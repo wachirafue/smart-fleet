@@ -1,0 +1,70 @@
+// Prisma schema for Smart Fleet Management
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Vehicle {
+  id        String   @id
+  name      String
+  status    String   @default("offline")
+  destLat   Float?
+  destLng   Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  telemetry TelemetryData[]
+  alerts    AlertLog[]
+
+  @@map("vehicles")
+}
+
+model TelemetryData {
+  id          Int      @id @default(autoincrement())
+  truckId     String
+  temperature Float
+  humidity    Float    @default(0)
+  light       Float    @default(0)
+  accelX      Float    @default(0)
+  accelY      Float    @default(0)
+  accelZ      Float    @default(0)
+  speed       Float    @default(0)
+  doorStatus  Int      @default(0)
+  lat         Float?
+  lng         Float?
+  timestamp   DateTime @default(now())
+
+  vehicle Vehicle @relation(fields: [truckId], references: [id])
+
+  @@index([truckId])
+  @@index([timestamp])
+  @@map("telemetry_data")
+}
+
+model AlertLog {
+  id        Int      @id @default(autoincrement())
+  truckId   String
+  alertType String
+  message   String   @db.Text
+  timestamp DateTime @default(now())
+
+  vehicle Vehicle @relation(fields: [truckId], references: [id])
+
+  @@index([truckId])
+  @@index([timestamp])
+  @@map("alert_logs")
+}
+
+model PushSubscription {
+  id        Int      @id @default(autoincrement())
+  endpoint  String   @unique @db.VarChar(500)
+  p256dh    String   @db.Text
+  auth      String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@map("push_subscriptions")
+}
