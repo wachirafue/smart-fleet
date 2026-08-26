@@ -70,4 +70,4 @@ Alert & Notifications: Instant warnings and Web Push alerts for critical events.
 Modern Dashboard: Built with Next.js and Tailwind CSS featuring a sleek dark-mode UI.
 
 👨‍💻 Author
-Developed with 💻 and ☕ by Wiwat (Sripatum University - Computer Engineering)
+Developed with 💻 and ☕ by Wachira Fueakaew (Sripatum University - Computer Engineering)
