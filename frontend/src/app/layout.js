@@ -31,10 +31,11 @@ export default function RootLayout({ children }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-14">
               <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <span className="text-2xl">??</span>
                 <div>
-                  <h1 className="text-sm font-bold text-white leading-none">SmartFleet</h1>
-                  <p className="text-xs text-slate-400 leading-none">Management System</p>
+                  <h1 className="text-2xl font-bold text-white tracking-wide leading-none">
+                    SmartFleet
+                  </h1>
+                  <p className="text-sm text-slate-400 mt-0.5 leading-none">Management System</p>
                 </div>
               </a>
               <div className="flex items-center gap-3">
